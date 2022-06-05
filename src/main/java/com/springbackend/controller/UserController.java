@@ -1,5 +1,7 @@
 package com.springbackend.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,10 @@ import com.springbackend.service.UserService;
 @RestController
 @RequestMapping("user")
 public class UserController {
+	
+	
+	Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	private UserService userService;
 	
 	@Autowired
@@ -21,6 +27,7 @@ public class UserController {
 	
 	@GetMapping("/all")
 	public ResponseEntity getAllUsers(Pageable pageable) {
+		logger.info("hit all user api");
 		return ResponseEntity.ok(userService.getAllUsers());
 	}
 
